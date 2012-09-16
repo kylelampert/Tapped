@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tag Writer"
+            android:textSize="30dp" />
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick a location. Tap a tag. That&apos;s it." />
+
+        <RadioGroup
+            android:id="@+id/places_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp" >
+
+            <RadioButton
+                android:id="@+id/nyc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="New York" />
+
+            <RadioButton
+                android:id="@+id/sf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="San Francisco" />
+
+            <RadioButton
+                android:id="@+id/boston"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Boston" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center" >
+
+            <Button
+                android:id="@+id/enable_tag_write_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center"
+                android:text="Enable Tag Writer"
+                android:textSize="14sp" />
+
+            <ProgressBar
+                android:id="@+id/tag_writer_progress"
+                style="?android:attr/progressBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="#999" />
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="1px"
+        android:background="#DDD" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DFE1DF"
+        android:gravity="center|left"
+        android:orientation="vertical"
+        android:padding="10dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dp"
+            android:text="Before Writing:"
+            android:textColor="#111"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/last_tag_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFF"
+            android:padding="3dp"
+            android:text="" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="After Writing:"
+            android:textColor="#111"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/last_tag_written"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:background="#FFF"
+            android:padding="3dp"
+            android:text="" />
+    </LinearLayout>
+
+</LinearLayout>
