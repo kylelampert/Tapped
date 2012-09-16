@@ -210,7 +210,6 @@ public class SharingFragment extends Fragment implements OnBeamRecievedListener,
 		this.beamReceivedUsername = username;
 		this.beamRecievedUserId = userId;
 		updateUi();
-		// TODO enable share if I have both a person and place
 	}
 
 	@Override
@@ -218,7 +217,6 @@ public class SharingFragment extends Fragment implements OnBeamRecievedListener,
 		this.tagReadPlaceName = placeName;
 		this.tagReadPlaceId = facebookPlaceId;
 		updateUi();
-		// TODO enable share if I have both a person and place
 	}
 	
 	private void resetFields(){

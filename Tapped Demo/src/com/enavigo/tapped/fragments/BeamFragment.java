@@ -15,8 +15,6 @@ public class BeamFragment extends SimpleLayoutFragment {
 
 	public BeamFragment(int layoutResourceId) {
 		super(layoutResourceId);
-		
-		//TODO crash if you try to beam when on the intro screen. we need to kick off the async task somewhere else
 	}
 	
 	@Override

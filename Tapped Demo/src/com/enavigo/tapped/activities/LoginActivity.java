@@ -38,11 +38,6 @@ public class LoginActivity extends Activity {
 				loginWithFacebook();
 			}
 		});
-		
-		// TODO don't login during onCreate - that's redundant - need to check
-		// if the session is valid
-
-		// TODO global logout ?
 	}
 
 	@Override

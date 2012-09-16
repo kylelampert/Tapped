@@ -41,9 +41,8 @@ public class TagFragment extends Fragment implements OnTagReadWriteListener {
 		super.onActivityCreated(savedInstanceState);
 
 		// The parent activity contains the infrastructure for tag read/write
-		// Set the default tag message to be Boston
-		// TODO don't hardcode this
-		((HomeActivity) getActivity()).setTagWriteMessage(Constants.PLACE_BOSTON);
+		// Set the default tag message to be NYC (first in the list)
+		((HomeActivity) getActivity()).setTagWriteMessage(Constants.FB_PLACE_ID_NYC);
 	};
 
 	@Override
