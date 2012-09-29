@@ -1,4 +1,4 @@
-package com.enavigo.tapped.utils;
+package com.tapped.nfc;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -93,7 +93,7 @@ public class NfcUtils {
 	}
 
 	/**
-	 * Parse an intent for non-empty strings within an NDEF message.
+	 * Parse an intent for non-empty strings within an NDEF message
 	 * 
 	 * @param intent
 	 * @return an empty list if the payload is empty

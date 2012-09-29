@@ -1,0 +1,12 @@
+<resources>
+
+    <string name="app_name">NFC Demo</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_beam">BeamActivity</string>
+    <string name="title_activity_tags">TagsActivity</string>
+    <string name="title_activity_facebook_login">FacebookLoginActivity</string>
+    <string name="title_activity_kinvey">KinveyActivity</string>
+
+</resources>

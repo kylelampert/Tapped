@@ -1,4 +1,4 @@
-package com.enavigo.tapped.services;
+package com.tapped.nfc;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,7 +8,6 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -25,14 +24,13 @@ import com.facebook.android.FacebookError;
  * Singleton class that provides access to Facebook SDK
  */
 public enum FacebookService {
-	// Singleton
-	INSTANCE;
+	INSTANCE; // Singleton
 
 	public enum RequestType {
 		POST, GET
 	};
 
-	// User Data Types - use in getUserData().get()
+	// User Data Types for use in getUserData().get()
 	public static final String USER_DATA_USERNAME = "username";
 	public static final String USER_DATA_NAME = "name";
 	public static final String USER_DATA_ID = "id";
@@ -42,9 +40,8 @@ public enum FacebookService {
 
 	public static Facebook facebook = new Facebook(FB_APP_ID);
 
-	// Store the user's data after grabbing it the first time
+	// Cache the user's data after pulling it the first time
 	public static JSONObject userData;
-
 	private static Bitmap profileImage;
 
 	// Interfaces
@@ -71,7 +68,7 @@ public enum FacebookService {
 
 			@Override
 			public void onComplete(String response, Object state) {
-				if(resultListener!=null) resultListener.onRequestResult(response);
+				resultListener.onRequestResult(response);
 			}
 
 			@Override
@@ -95,8 +92,8 @@ public enum FacebookService {
 			}
 
 			public void onError(Exception e) {
-				Log.e("NFCJam", "Error in FB async request or result", e);
-				if (errorListener!=null) errorListener.onRequestError();
+				Log.e("NFC-Demo", "Error in FB async request or result", e);
+				errorListener.onRequestError();
 			}
 		};
 
@@ -105,25 +102,6 @@ public enum FacebookService {
 		} else {
 			runner.request(graphPath, requestListener);
 		}
-	}
-	
-	/**
-	 * Request the user's 
-	 * @param resultListener
-	 * @param errorListener
-	 */
-	public static void requestUserData(final OnRequestResultListener resultListener, final OnRequestErrorListener errorListener){
-		FacebookService.requestAsync("me", null, RequestType.GET, new OnRequestResultListener(){
-			@Override
-			public void onRequestResult(String result) {
-				try {
-					userData = new JSONObject(result);
-				} catch (JSONException e) {
-					Log.e("Tapping", "Error decoding JSON", e);
-				}
-				resultListener.onRequestResult(result);
-			}
-		}, errorListener);
 	}
 
 	/**
@@ -184,7 +162,7 @@ public enum FacebookService {
 	}
 
 	/**
-	 * sample JSON for user data { "id":"0207051", "name":"John Doe",
+	 * sample JSON for user data { "id":"0207150", "name":"John Doe",
 	 * "first_name":"John", "last_name":"Doe",
 	 * "link":"http:\/\/www.facebook.com\/johndoe", "username":"johndoe",
 	 * "hometown":{ "id":"106003956105810", "name":"Boston, Massachusetts" },
