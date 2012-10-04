@@ -80,11 +80,13 @@ public class LoginActivity extends Activity {
 					@Override
 					public void onFacebookError(FacebookError error) {
 						showFacebookError(progressDialog);
+						Log.e("Tapped", "Error in login", error);
 					}
 
 					@Override
 					public void onError(DialogError e) {
 						showFacebookError(progressDialog);
+						Log.e("Tapped", "Error in login", e);
 					}
 
 					@Override

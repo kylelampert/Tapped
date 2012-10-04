@@ -40,4 +40,6 @@ public class Constants {
 			put(PLACE_BOSTON, FB_PLACE_ID_BOSTON);
 		}
 	};
+	
+	public static final String TAPPED_FB_PLACE = "473977815966999";
 }

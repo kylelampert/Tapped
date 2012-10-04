@@ -1,5 +1,13 @@
 package com.enavigo.tapped.fragments;
 
+import java.util.List;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.TextUtils;
@@ -20,6 +28,7 @@ import com.enavigo.tapped.activities.HomeActivity.OnPlaceChangedListener;
 import com.enavigo.tapped.services.FacebookService;
 import com.enavigo.tapped.services.FacebookService.OnRequestErrorListener;
 import com.enavigo.tapped.services.FacebookService.OnRequestResultListener;
+import com.enavigo.tapped.utils.Constants;
 
 public class SharingFragment extends Fragment implements OnBeamRecievedListener, OnPlaceChangedListener {
 
@@ -104,39 +113,102 @@ public class SharingFragment extends Fragment implements OnBeamRecievedListener,
 					Toast.makeText(getActivity(), "Can't share; invalid person.", Toast.LENGTH_SHORT).show();
 					return;
 				}
-				
-				// TODO check-in
 
-				Bundle params = new Bundle();
-				params.putString("message", "I'm hacking at Tapped (www.tappednfc.com) with " + beamReceivedUsername + ".");
-				params.putString("place", tagReadPlaceId);
-
-				FacebookService.requestAsync("me/feed", params, FacebookService.RequestType.POST,
-						new OnRequestResultListener() {
-
-							@Override
-							public void onRequestResult(String result) {
-								if (result.contains("id")) {
-									showFacebookSuccess();
-									resetFields();
-									Log.i("Tapped", "Sucess posting! Result is: " + result);
-								} else {
-									showFacebookError(result);
-								}
-							}
-						}, new OnRequestErrorListener() {
-
-							@Override
-							public void onRequestError() {
-								showFacebookError(null);
-							}
-						});
+				doFbPost();
+				doFbCheckin();
 			}
 		});
 
 		return view;
 	}
-	
+
+	private void doFbPost() {
+		Bundle params = new Bundle();
+		params.putString("message", "I'm hacking at Tapped (www.tappednfc.com) with " + beamReceivedUsername + ".");
+		params.putString("place", tagReadPlaceId);
+
+		FacebookService.requestAsync("me/feed", params, FacebookService.RequestType.POST,
+				new OnRequestResultListener() {
+
+					@Override
+					public void onRequestResult(String result) {
+						if (result.contains("id")) {
+							showFacebookSuccess();
+							resetFields();
+							Log.i("Tapped", "Sucess posting! Result is: " + result);
+						} else {
+							showFacebookError(result);
+						}
+					}
+				}, new OnRequestErrorListener() {
+
+					@Override
+					public void onRequestError() {
+						showFacebookError(null);
+					}
+				});
+	}
+
+	private void doFbCheckin() {
+		Bundle params = new Bundle();
+		params.putString("access_token", FacebookService.facebook.getAccessToken());
+		params.putString("place", Constants.TAPPED_FB_PLACE); 
+		params.putString("Message", "I'm hacking at Tapped!");
+
+		JSONObject coordinates = new JSONObject();
+		try {
+			double[] coords = getGPS();
+			coordinates.put("latitude", coords[0]);
+			coordinates.put("longitude", coords[1]);
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+
+		params.putString("coordinates", coordinates.toString());
+
+		FacebookService.requestAsync("me/checkins", params, FacebookService.RequestType.POST,
+				new OnRequestResultListener() {
+
+					@Override
+					public void onRequestResult(String result) {
+						Log.i("Tapped", "Checked in with result: " + result);
+					}
+				}, new OnRequestErrorListener() {
+
+					@Override
+					public void onRequestError() {
+						Log.i("Tapped", "Error checking in");
+					}
+				});
+	}
+
+	private double[] getGPS() {
+		LocationManager lm = (LocationManager) getActivity().getSystemService(Context.LOCATION_SERVICE);
+		List<String> providers = lm.getProviders(true);
+
+		/*
+		 * Loop over the array backwards, and if you get an accurate location,
+		 * then break out the loop
+		 */
+		Location l = null;
+
+		for (int i = providers.size() - 1; i >= 0; i--) {
+			l = lm.getLastKnownLocation(providers.get(i));
+			if (l != null)
+				break;
+		}
+
+		double[] gps = new double[2];
+		if (l != null) {
+			gps[0] = l.getLatitude();
+			gps[1] = l.getLongitude();
+		} else {
+			gps[0] = 40.739326;
+			gps[1] = -73.989357;
+		}
+		return gps;
+	}
+
 	private void showFacebookSuccess() {
 		getActivity().runOnUiThread(new Runnable() {
 
@@ -218,8 +290,8 @@ public class SharingFragment extends Fragment implements OnBeamRecievedListener,
 		this.tagReadPlaceId = facebookPlaceId;
 		updateUi();
 	}
-	
-	private void resetFields(){
+
+	private void resetFields() {
 		beamRecievedUserId = null;
 		beamReceivedUsername = null;
 		tagReadPlaceId = null;
