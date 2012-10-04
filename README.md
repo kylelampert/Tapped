@@ -10,4 +10,4 @@ Contents:
 Installation Notes:
 - After importing the project(s) into your workspace, you must add the Facebook SDK as a project library for the Tapped Demo Application to compile.
 - Visit https://developers.facebook.com/docs/mobile/android/build/#sdk to download and integrate the SDK
-- Once you have installed the SDK, right click on the project, and select 'Properties.' In the 'Android' sub-section, add 
+- Once you have installed the SDK, right click on the imported Tapped project, and select 'Properties.' In the 'Android' sub-section, add the recently created Facebook project as a Library (it's safe to delete any existing references to the Facebook project that may already be in this preference pane).
