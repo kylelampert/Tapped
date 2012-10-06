@@ -8,8 +8,8 @@ public class Constants {
 	public static final String MIME_TYPE = "application/com.enavigo.tapped";
 	
 	// For Kinvey - see TappedApplication for usage
-	public static final String KINVEY_KEY = "kid_VPBToYGel";
-	public static final String KINVEY_SECRET_KEY = "ed9e2e51121f442694ef74709513ed80";
+	public static final String KINVEY_KEY = "YOUR_APP_KEY";
+	public static final String KINVEY_SECRET_KEY = "YOUR_APP_SECRET_KEY";
 	
 	// Kinvey collections
 	public static final String KINVEY_COLLECTION_BEAMS = "beams";

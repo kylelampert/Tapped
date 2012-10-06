@@ -26,8 +26,8 @@ import com.kinvey.KinveySettings;
 import com.kinvey.util.ScalarCallback;
 
 public class TagsActivity extends Activity {
-	private static final String KINVEY_KEY = "kid_VPBToYGel";
-	private static final String KINVEY_SECRET_KEY = "ed9e2e51121f442694ef74709513ed80";
+	private static final String KINVEY_KEY = "YOUR_APP_KEY";
+	private static final String KINVEY_SECRET_KEY = "YOUR_APP_SECRET_KEY";
 	
 	private KCSClient kinveyClient;
 	private NfcAdapter mNfcAdapter;

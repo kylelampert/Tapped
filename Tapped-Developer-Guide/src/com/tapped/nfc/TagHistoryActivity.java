@@ -18,8 +18,8 @@ import com.kinvey.MappedAppdata;
 import com.kinvey.util.ListCallback;
 
 public class TagHistoryActivity extends Activity {  
-    private static final String KINVEY_KEY = "kid_VPBToYGel";
-	private static final String KINVEY_SECRET_KEY = "ed9e2e51121f442694ef74709513ed80";
+	private static final String KINVEY_KEY = "YOUR_APP_KEY";
+	private static final String KINVEY_SECRET_KEY = "YOUR_APP_SECRET_KEY";
 	
 	private KCSClient kinveyClient;
 	private ListView tagsList;
