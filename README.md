@@ -5,7 +5,7 @@ Demo applications for the Tapped NFC Hackathons. See http://www.tappednfc.com fo
 
 Contents:
 - Tapped Developer Guide: A bare-bones application that demos basic NFC functionality. This codebase accompanies the Tapped Developer guide (http://www.tappednfc.com/android-nfc-developer-guide/).
-- Tapped Demo: A demo application featuring Android Beam, tag reading & writing, and Facebook integration. Also demos use of Kinvey as a cloud-based backend and datastore.
+- Tapped Demo: A more complex demo application featuring Android Beam, tag reading & writing, and Facebook integration. Also demos use of Kinvey as a cloud-based backend and datastore.
 
 Installation Notes:
 - See the Tapped Developer Guide (in the Wiki of this repo) for getting started with Eclipse and the Android SDK.
