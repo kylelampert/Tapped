@@ -38,7 +38,7 @@ public enum FacebookService {
 	public static final String USER_DATA_ID = "id";
 
 	// Unique identifier used by FB
-	public static final String FB_APP_ID = "359799254100385";
+	public static final String FB_APP_ID = "YOUR_APP_ID_HERE";
 
 	public static Facebook facebook = new Facebook(FB_APP_ID);
 
